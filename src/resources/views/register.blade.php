@@ -13,8 +13,7 @@
 <body>
     <div class="all-contents">
         <div class="header-contents">
-            <img src="" alt="">
-            <!-- 画像を入れます -->
+            <img src="storage/logo.svg" alt="ロゴ">
         </div>
         <div class="main-contents">
             <h1>会員登録</h1>
