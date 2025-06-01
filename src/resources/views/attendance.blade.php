@@ -22,12 +22,52 @@
         <div class="main-contents">
             <!-- <form class="form" action="/login" method="post"> -->
                 <!-- @csrf -->
+            <div class="main-contents-title">
                 <p>勤務外</p>
+            </div>
+            <div class="main-contents-date">
                 <p>2023年6月1日㈭</p>
+            </div>
+            <div class="main-contents-time">
                 <p>08:00</p>
-                <button type="submit" class="button-login">出勤</button>
+            </div>
+            <button type="submit" class="button-black">出勤</button>
 
-                
+            <div class="main-contents-title">
+                <p>出勤中</p>
+            </div>
+            <div class="main-contents-date">
+                <p>2023年6月1日㈭</p>
+            </div>
+            <div class="main-contents-time">
+                <p>08:00</p>
+            </div>
+            <button type="submit" class="button-black">退勤</button>
+            <button type="submit" class="button-white">休憩入</button>
+
+            <div class="main-contents-title">
+                <p>休憩中</p>
+            </div>
+            <div class="main-contents-date">
+                <p>2023年6月1日㈭</p>
+            </div>
+            <div class="main-contents-time">
+                <p>08:00</p>
+            </div>
+            <button type="submit" class="button-white">休憩戻</button>
+
+            <div class="main-contents-title">
+                <p>出勤中</p>
+            </div>
+            <div class="main-contents-date">
+                <p>2023年6月1日㈭</p>
+            </div>
+            <div class="main-contents-time">
+                <p>08:00</p>
+            </div>
+            <div class="main-contents-message">
+                <p>お疲れ様でした。</p>
+            </div>
             <!-- </form> -->
             <!-- <a href="/register">会員登録はこちら</a> -->
             <!-- ルート処理をしてから解除 -->
