@@ -8,6 +8,7 @@
   <title>coachtech 勤怠管理アプリ</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/register.css') }}" />
 </head>
 
 <body>

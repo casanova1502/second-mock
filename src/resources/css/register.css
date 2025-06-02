@@ -1,0 +1,19 @@
+.header-contents{
+    width: 1512px;
+    height: 80px;
+    background: #000000;
+}
+
+h1{
+    width: 144px;
+    height: 44px;
+    top: 161px;
+    left: 684px;
+    font-family: Inter;
+    font-weight: 700px;
+    font-size: 36px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    background: #000000;
+    text-align: center
+}
