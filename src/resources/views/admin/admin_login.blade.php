@@ -8,24 +8,28 @@
   <title>coachtech 勤怠管理アプリ</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/admin/admin_login.css') }}" />
 </head>
 
 <body>
     <div class="all-contents">
         <div class="header-contents">
-            <img src="storage/logo.svg" alt="ロゴ">
+            <img src="{{ asset('storage/logo.svg') }}" alt="ロゴ">
         </div>
         <div class="main-contents">
             <h1>管理者ログイン</h1>
             <!-- <form class="form" action="/login" method="post"> -->
                 <!-- @csrf -->
-                <label class="label">メールアドレス</label>
-                <input type="email" name="email" class="login_contents" value="{{ old('email') }}" />
-                <label class="label">パスワード</label>
-                <input type="password" name="password" class="login_contents" />
-                <button type="submit" class="button-login">管理者ログインする</button>
+                <div class="form-group">
+                    <label class="label">メールアドレス</label>
+                    <input type="email" name="email" class="login_contents" value="{{ old('email') }}" />
+                </div>
+                <div class="form-group">
+                    <label class="label">パスワード</label>
+                    <input type="password" name="password" class="login_contents" />
+                </div>
+                <button type="submit" class="button-admin-login">管理者ログインする</button>
             <!-- </form> -->
-            <!-- <a href="/register">会員登録はこちら</a> -->
             <!-- ルート処理をしてから解除 -->
         </div>    
     </div>

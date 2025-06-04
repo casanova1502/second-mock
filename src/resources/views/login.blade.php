@@ -30,7 +30,7 @@
                 </div>
                 <button type="submit" class="button-login">ログインする</button>
             <!-- </form> -->
-            <a href="/register" class="href">会員登録はこちら</a>
+            <a href="/register">会員登録はこちら</a>
             <!-- ルート処理をしてから解除 -->
         </div>    
     </div>
