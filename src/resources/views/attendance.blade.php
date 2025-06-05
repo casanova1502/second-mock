@@ -8,15 +8,16 @@
   <title>coachtech 勤怠管理アプリ</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/attendance.css') }}" />
 </head>
 
 <body>
     <div class="all-contents">
         <div class="header-contents">
             <img src="storage/logo.svg" alt="ロゴ">
-            <a href="">勤怠</a>
-            <a href="">勤怠一覧</a>
-            <a href="">申請</a>
+            <a href="/attendance">勤怠</a>
+            <a href="/attendance/list">勤怠一覧</a>
+            <a href="/stamp_correction_request/list">申請</a>
             <a href="">ログアウト</a>
         </div>
         <div class="main-contents">

@@ -13,7 +13,7 @@
 <body>
     <div class="all-contents">
         <div class="header-contents">
-            <img src="storage/logo.svg" alt="ロゴ">
+            <img src="{{ asset('storage/logo.svg') }}" alt="ロゴ">
             <a href="">勤怠</a>
             <a href="">勤怠一覧</a>
             <a href="">申請</a>
