@@ -29,3 +29,4 @@ Route::get('/admin/attendance/list', [AdminAttendanceController::class, 'index']
 Route::get('/admin/attendance/id', [AdminAttendanceController::class, 'storeView']);
 // 本来は/attendance/idだが、一時的に区別するために分けて記載中。
 Route::get('/admin/staff/list', [AdminAttendanceController::class, 'staffIndex']);
+Route::get('/admin/attendance/staff/id', [AdminAttendanceController::class, 'staffAttendanceindex']);

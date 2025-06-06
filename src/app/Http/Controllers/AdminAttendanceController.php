@@ -16,5 +16,9 @@ class AdminAttendanceController extends Controller
 
     public function staffIndex(){
         return view('admin/admin_staff_list');
-    }    
+    }
+    
+    public function staffAttendanceindex(){
+        return view('admin/admin_attendance_staff_id');
+    }  
 }
