@@ -6,6 +6,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceApplyController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminAttendanceController;
+use App\Http\Controllers\AdminApplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,5 @@ Route::get('/admin/attendance/id', [AdminAttendanceController::class, 'storeView
 // 本来は/attendance/idだが、一時的に区別するために分けて記載中。
 Route::get('/admin/staff/list', [AdminAttendanceController::class, 'staffIndex']);
 Route::get('/admin/attendance/staff/id', [AdminAttendanceController::class, 'staffAttendanceindex']);
+Route::get('/stamp_correction_request/list', [AdminApplyController::class, 'index']);
+Route::get('stamp_correction_request/approve/attendance_correct_request', [AdminApplyController::class, 'approval']);
