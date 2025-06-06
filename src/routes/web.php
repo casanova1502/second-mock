@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceApplyController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminAttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,6 @@ Route::get('/attendance/list', [AttendanceController::class, 'index']);
 Route::get('/attendance/id', [AttendanceApplyController::class, 'storeView']);
 Route::get('/stamp_correction_request/list', [AttendanceApplyController::class, 'apply']);
 Route::get('/admin/login', [AdminController::class, 'login']);
+Route::get('/admin/attendance/list', [AdminAttendanceController::class, 'index']);
+Route::get('/admin/attendance/id', [AdminAttendanceController::class, 'storeView']);
+// 本来は/attendance/idだが、一時的に区別するために分けて記載中。
