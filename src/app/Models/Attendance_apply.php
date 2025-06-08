@@ -9,5 +9,10 @@ class Attendance_apply extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['date', 'at_work', 'leaving_work', 'rest', 'total', 'detail'];
+    protected $fillable = ['attendance_id', 'date', 'at_work', 'leaving_work', 'rest', 'total', 'detail'];
+
+    public function attendance()
+    {
+       return $this->belongsTo(Attendance::class);
+    }
 }
