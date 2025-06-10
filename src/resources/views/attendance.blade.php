@@ -15,10 +15,14 @@
     <div class="all-contents">
         <div class="header-contents">
             <img src="storage/logo.svg" alt="ロゴ">
+        @if (Auth::check())
             <a href="/attendance">勤怠</a>
             <a href="/attendance/list">勤怠一覧</a>
             <a href="/stamp_correction_request/list">申請</a>
-            <a href="">ログアウト</a>
+            <form action="/logout" method="post">
+                @csrf
+                <button type="submit">ログアウト</button>
+            </form>
         </div>
         <div class="main-contents">
             <!-- <form class="form" action="/login" method="post"> -->
@@ -72,6 +76,7 @@
             <!-- </form> -->
             <!-- <a href="/register">会員登録はこちら</a> -->
             <!-- ルート処理をしてから解除 -->
+        @endif
         </div>    
     </div>
 </body>

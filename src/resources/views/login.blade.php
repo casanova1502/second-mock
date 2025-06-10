@@ -18,8 +18,8 @@
         </div>
         <div class="main-contents">
             <h1>ログイン</h1>
-            <!-- <form class="form" action="/login" method="post"> -->
-                <!-- @csrf -->
+            <form class="form" action="/login" method="post">
+                @csrf
                 <div class="form-group">
                     <label class="label">メールアドレス</label>
                     <input type="email" name="email" class="login_contents" value="{{ old('email') }}" />
@@ -29,9 +29,8 @@
                     <input type="password" name="password" class="login_contents" />
                 </div>
                 <button type="submit" class="button-login">ログインする</button>
-            <!-- </form> -->
+            </form>
             <a href="/register">会員登録はこちら</a>
-            <!-- ルート処理をしてから解除 -->
         </div>    
     </div>
 </body>

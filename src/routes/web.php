@@ -20,7 +20,13 @@ use App\Http\Controllers\AdminApplyController;
 */
 
 Route::get('/register', [UserController::class, 'register']);
+Route::post('/register', [UserController::class, 'registerStore']);
 Route::get('/login', [UserController::class, 'login']);
+Route::post('/login', [UserController::class, 'loginStore']);
+Route::post('/logout', [UserController::class, 'logout']);
+Route::middleware('auth')->group(function () {
+    Route::get('/', [AuthController::class, 'index']);
+});
 Route::get('/attendance', [AttendanceController::class, 'registerAttendanceview']);
 Route::get('/attendance/list', [AttendanceController::class, 'index']);
 Route::get('/attendance/id', [AttendanceApplyController::class, 'storeView']);

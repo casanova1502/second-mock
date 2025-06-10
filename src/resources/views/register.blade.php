@@ -18,8 +18,8 @@
         </div>
         <div class="main-contents">
             <h1>会員登録</h1>
-            <!-- <form action=""></form> -->
-                <!-- @csrf -->
+            <form action="/register" method="post">
+                @csrf
                 <div class="form-group">
                     <label class="label">名前</label><br>
                     <input type="text" name="name" class="resigter_contents" value="{{ old('name')}}" /> 
@@ -36,10 +36,9 @@
                     <label class="label">確認用パスワード</label><br>
                     <input type="password" name="password_confirmation" class="resigter_contents" />
                 </div>
-                <button  type="submit" class="button-register">登録する</button>
-            <!-- </form> -->
+                <button type="submit" class="button-register">登録する</button>
+            </form>
             <a href="/login" class="href">ログインはこちら</a>
-            <!-- ルート処理をしてから解除 -->
         </div>    
     </div>
 </body>
