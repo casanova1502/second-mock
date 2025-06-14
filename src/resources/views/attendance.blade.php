@@ -1,3 +1,7 @@
+@php
+    $attendance = App\Models\Attendance::where('user_id', Auth::id())->latest()->first();
+@endphp
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -15,7 +19,6 @@
     <div class="all-contents">
         <div class="header-contents">
             <img src="storage/logo.svg" alt="ロゴ">
-        @if (Auth::check())
             <a href="/attendance">勤怠</a>
             <a href="/attendance/list">勤怠一覧</a>
             <a href="/stamp_correction_request/list">申請</a>
@@ -25,39 +28,40 @@
             </form>
         </div>
         <div class="main-contents">
-            <!-- <form class="form" action="/login" method="post"> -->
-                <!-- @csrf -->
-            <div class="main-contents-title">
-                <p>勤務外</p>
-            </div>
-            <div class="main-contents-date">
-                <p>2023年6月1日㈭</p>
-            </div>
-            <div class="main-contents-time">
-                <p>08:00</p>
-            </div>
-            <button type="submit" class="button-black">出勤</button>
+            <form class="form" action="/attendance" method="post">
+                @csrf
+                <div class="main-contents-title">
+                    <p >勤務外</p>
+                </div>
+                <div class="main-contents-date">
+                    <p>日時（木）</p>
+                </div>
+                <div class="main-contents-time">
+                    <p>時間</p>
+                </div>
+                <button type="submit" class="button-black">出勤</button>
+            </form>
 
-            <div class="main-contents-title">
+            <!-- <div class="main-contents-title">
                 <p>出勤中</p>
             </div>
             <div class="main-contents-date">
-                <p>2023年6月1日㈭</p>
+                <p></p>
             </div>
             <div class="main-contents-time">
-                <p>08:00</p>
+                <p></p>
             </div>
             <button type="submit" class="button-black">退勤</button>
             <button type="submit" class="button-white">休憩入</button>
-
+               
             <div class="main-contents-title">
                 <p>休憩中</p>
             </div>
             <div class="main-contents-date">
-                <p>2023年6月1日㈭</p>
+                <p></p>
             </div>
             <div class="main-contents-time">
-                <p>08:00</p>
+                <p></p>
             </div>
             <button type="submit" class="button-white">休憩戻</button>
 
@@ -65,18 +69,15 @@
                 <p>出勤中</p>
             </div>
             <div class="main-contents-date">
-                <p>2023年6月1日㈭</p>
+                <p></p>
             </div>
             <div class="main-contents-time">
-                <p>08:00</p>
+                <p></p>
             </div>
             <div class="main-contents-message">
                 <p>お疲れ様でした。</p>
             </div>
-            <!-- </form> -->
-            <!-- <a href="/register">会員登録はこちら</a> -->
-            <!-- ルート処理をしてから解除 -->
-        @endif
+
         </div>    
     </div>
 </body>

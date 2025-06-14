@@ -25,9 +25,10 @@ Route::get('/login', [UserController::class, 'login']);
 Route::post('/login', [UserController::class, 'loginStore']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::middleware('auth')->group(function () {
-    Route::get('/', [AuthController::class, 'index']);
+    // Route::get('/', [AuthController::class, 'index']);
+    Route::get('/attendance', [AttendanceController::class, 'registerAttendanceview']);
+    Route::post('/attendance', [AttendanceController::class, 'startAttendance']);
 });
-Route::get('/attendance', [AttendanceController::class, 'registerAttendanceview']);
 Route::get('/attendance/list', [AttendanceController::class, 'index']);
 Route::get('/attendance/id', [AttendanceApplyController::class, 'storeView']);
 Route::get('/stamp_correction_request/list', [AttendanceApplyController::class, 'apply']);
