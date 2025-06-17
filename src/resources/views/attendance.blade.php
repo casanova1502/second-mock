@@ -34,7 +34,7 @@
                     <p >勤務外</p>
                 </div>
                 <div class="main-contents-date">
-                    <p>日時（木）</p>
+                    <p>{{ $date }}</p>
                 </div>
                 <div class="main-contents-time">
                     <p>時間</p>

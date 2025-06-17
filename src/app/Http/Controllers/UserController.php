@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+// use Illuminate\Support\Carbon;
 
 class UserController extends Controller
 {
@@ -39,7 +39,10 @@ class UserController extends Controller
 
         if (Auth::attempt($user))
         {
-            return view('attendance',compact('user'));
+        // Carbon::setLocale('ja');
+        // $date = Carbon::now()->isoFormat('YYYY年M月D日(ddd)');
+        //     return view('attendance',compact('user','date'));
+            return redirect('/attendance');
         }
 
         return redirect()->back();

@@ -12,8 +12,10 @@ class AttendanceController extends Controller
 {
     public function registerAttendanceview(){
         $user = Auth::user();
-        // $now = Carbon::now();
-        return view('attendance', compact('user'));
+        
+        Carbon::setLocale('ja');
+        $date = Carbon::now()->isoFormat('YYYY年M月D日(ddd)');
+        return view('attendance', compact('user','date'));
     }
 
     public function index(){
