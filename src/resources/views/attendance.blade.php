@@ -39,7 +39,7 @@
                 <button type="submit" class="button-black">出勤</button>
             </form>
             
-            @else
+            @elseif(isset($attendance) && !is_null($attendance->at_work) && is_null($attendance->leaving_work))
                 <div class="main-contents-title">
                     <p>出勤中</p>
                 </div>
@@ -62,9 +62,9 @@
                     <p>{{ $time }}</p>
                 </div>
                 <button type="submit" class="button-white">休憩戻</button>
-
+            @else(isset($attendance) && !is_null($attendance->at_work, $attendance->leaving_work))
                 <div class="main-contents-title">
-                    <p>出勤中</p>
+                    <p>退勤済み</p>
                 </div>
                 <div class="main-contents-date">
                     <p>{{ $date }}</p>

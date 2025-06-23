@@ -19,8 +19,10 @@ class CreateAttendancesTable extends Migration
             $table->date('date');
             $table->time('at_work');
             $table->time('leaving_work');
-            $table->integer('rest');
             $table->integer('total');
+            $table->time('start_rest');
+            $table->time('finish_rest');
+            $table->integer('rest');
             $table->string('detail');
             $table->timestamps();
         });
