@@ -1,7 +1,3 @@
-@php
-    $attendance = App\Models\Attendance::where('user_id', Auth::id())->latest()->first();
-@endphp
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -28,56 +24,59 @@
             </form>
         </div>
         <div class="main-contents">
+            @if(isset($attendance) && is_null($attendance->at_work))
             <form class="form" action="/attendance" method="post">
                 @csrf
                 <div class="main-contents-title">
-                    <p >勤務外</p>
+                    <p>勤務外</p>
                 </div>
                 <div class="main-contents-date">
                     <p>{{ $date }}</p>
                 </div>
                 <div class="main-contents-time">
-                    <p>時間</p>
+                    <p>{{ $time }}</p>
                 </div>
                 <button type="submit" class="button-black">出勤</button>
             </form>
+            
+            @else
+                <div class="main-contents-title">
+                    <p>出勤中</p>
+                </div>
+                <div class="main-contents-date">
+                    <p>{{ $date }}</p>
+                </div>
+                <div class="main-contents-time">
+                    <p>{{ $time }}</p>
+                </div>
+                <button type="submit" class="button-black">退勤</button>
+                <button type="submit" class="button-white">休憩入</button>
 
-            <!-- <div class="main-contents-title">
-                <p>出勤中</p>
-            </div>
-            <div class="main-contents-date">
-                <p></p>
-            </div>
-            <div class="main-contents-time">
-                <p></p>
-            </div>
-            <button type="submit" class="button-black">退勤</button>
-            <button type="submit" class="button-white">休憩入</button>
-               
-            <div class="main-contents-title">
-                <p>休憩中</p>
-            </div>
-            <div class="main-contents-date">
-                <p></p>
-            </div>
-            <div class="main-contents-time">
-                <p></p>
-            </div>
-            <button type="submit" class="button-white">休憩戻</button>
+                <div class="main-contents-title">
+                    <p>休憩中</p>
+                </div>
+                <div class="main-contents-date">
+                    <p>{{ $date }}</p>
+                </div>
+                <div class="main-contents-time">
+                    <p>{{ $time }}</p>
+                </div>
+                <button type="submit" class="button-white">休憩戻</button>
 
-            <div class="main-contents-title">
-                <p>出勤中</p>
-            </div>
-            <div class="main-contents-date">
-                <p></p>
-            </div>
-            <div class="main-contents-time">
-                <p></p>
-            </div>
-            <div class="main-contents-message">
-                <p>お疲れ様でした。</p>
-            </div>
-
+                <div class="main-contents-title">
+                    <p>出勤中</p>
+                </div>
+                <div class="main-contents-date">
+                    <p>{{ $date }}</p>
+                </div>
+                <div class="main-contents-time">
+                    <p>{{ $time }}</p>
+                </div>
+                <div class="main-contents-message">
+                    <p>お疲れ様でした。</p>
+                </div>
+            @endif
+            <!-- </form> -->
         </div>    
     </div>
 </body>
