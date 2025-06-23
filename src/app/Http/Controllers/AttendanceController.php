@@ -19,8 +19,10 @@ class AttendanceController extends Controller
         $time = Carbon::now()->isoFormat('H:m');
 
         $attendance = (object)[
-            'at_work' => '9:00',
-            'leaving_work' => '17:00',
+            'at_work' => null,
+            'leaving_work' => null,
+            'start_rest' => null,
+            'finish_rest' => null
         ];
 
         return view('attendance', compact('user','date','time','attendance'));
