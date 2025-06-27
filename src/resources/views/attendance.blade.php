@@ -55,18 +55,21 @@
             </form>
             
             @elseif(isset($attendance) && !is_null($attendance->at_work) && is_null($attendance->leaving_work) && is_null($attendance->start_rest))
+            <div class="main-contents-title">
+                <p>出勤中</p>
+            </div>
+            <div class="main-contents-date">
+                <p>{{ $date }}</p>
+            </div>
+            <div class="main-contents-time">
+                <p>{{ $time }}</p>
+            </div>
+            <form class="form" action="/attendance/leaving-work" method="post">
+                @csrf    
+                <button type="submit" class="button-black">退勤</button>
+            </form>
             <form class="form" action="/attendance/start-rest" method="post">
                 @csrf
-                <div class="main-contents-title">
-                    <p>出勤中</p>
-                </div>
-                <div class="main-contents-date">
-                    <p>{{ $date }}</p>
-                </div>
-                <div class="main-contents-time">
-                    <p>{{ $time }}</p>
-                </div>
-                <button type="submit" class="button-black">退勤</button>
                 <button type="submit" class="button-white">休憩入</button>
             </form>
             
@@ -86,19 +89,23 @@
             </form>
 
             @elseif(isset($attendance) && !is_null($attendance->at_work) && is_null($attendance->leaving_work) && !is_null($attendance->start_rest) && !is_null($attendance->finish_rest))
+            <div class="main-contents-title">
+                <p>出勤中</p>
+            </div>
+            <div class="main-contents-date">
+                <p>{{ $date }}</p>
+            </div>
+            <div class="main-contents-time">
+                <p>{{ $time }}</p>
+            </div>
             <form class="form" action="/attendance/leaving-work" method="post">
                 @csrf    
-                <div class="main-contents-title">
-                    <p>出勤中</p>
-                </div>
-                <div class="main-contents-date">
-                    <p>{{ $date }}</p>
-                </div>
-                <div class="main-contents-time">
-                    <p>{{ $time }}</p>
-                </div>
                 <button type="submit" class="button-black">退勤</button>
+            </form>
+            <form class="form" action="/attendance/start-rest" method="post">
+                @csrf
                 <button type="submit" class="button-white">休憩入</button>
+            </form>
 
             @else(isset($attendance) && !is_null($attendance->at_work, $attendance->leaving_work))
                 <div class="main-contents-title">
