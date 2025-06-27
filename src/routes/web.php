@@ -27,7 +27,8 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::middleware('auth')->group(function () {
     // Route::get('/', [AuthController::class, 'index']);
     Route::get('/attendance', [AttendanceController::class, 'registerAttendanceview']);
-    Route::post('/attendance', [AttendanceController::class, 'startAttendancestore']);
+    Route::post('/attendance/atwork', [AttendanceController::class, 'atworkAttendance']);
+    Route::post('/attendance/startrest', [AttendanceController::class, 'startrestAttendance']);
 });
 Route::get('/attendance/list', [AttendanceController::class, 'index']);
 Route::get('/attendance/id', [AttendanceApplyController::class, 'storeView']);
