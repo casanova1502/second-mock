@@ -45,6 +45,42 @@ class AttendanceController extends Controller
             $attendance->start_rest = now();
             $attendance->save();
         }
+
+        return redirect('attendance');
+    }
+
+    public function finishrestAttendance(Request $request){        
+        $attendance = Attendance::where('user_id', Auth::id())->where('date', today())->first();
+        
+        if ($attendance) {
+            $attendance->finish_rest = now();
+
+            $start = Carbon::parse($attendance->start_rest);
+            $finish = Carbon::parse($attendance->finish_rest);
+            $breakMinutes = $start->diffInMinutes($finish);
+
+            $attendance->rest = $breakMinutes;
+
+            $attendance->save();
+        }
+        
+        return redirect('attendance');
+    }
+
+    public function leavingworkAttendance(Request $request){        
+        $attendance = Attendance::where('user_id', Auth::id())->where('date', today())->first();
+        
+        if ($attendance) {
+            $attendance->leaving_work = now();
+
+            $start = Carbon::parse($attendance->at_work);
+            $finish = Carbon::parse($attendance->leaving_work);
+            $workingkMinutes = $start->diffInMinutes($finish);
+
+            $attendance->total = $workingkMinutes;
+
+            $attendance->save();
+        }
         
         return redirect('attendance');
     }

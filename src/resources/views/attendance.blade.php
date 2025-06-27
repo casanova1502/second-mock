@@ -25,7 +25,7 @@
         </div>
         <div class="main-contents">
             @if(is_null($attendance))
-            <form class="form" action="/attendance/atwork" method="post">
+            <form class="form" action="/attendance/at-work" method="post">
                 @csrf
                 <div class="main-contents-title">
                     <p>勤務外</p>
@@ -40,7 +40,7 @@
             </form>
         
             @elseif($attendance && is_null($attendance->at_work))
-            <form class="form" action="/attendance/atwork" method="post">
+            <form class="form" action="/attendance/at-work" method="post">
                 @csrf
                 <div class="main-contents-title">
                     <p>勤務外</p>
@@ -55,7 +55,7 @@
             </form>
             
             @elseif(isset($attendance) && !is_null($attendance->at_work) && is_null($attendance->leaving_work) && is_null($attendance->start_rest))
-            <form class="form" action="/attendance/startrest" method="post">
+            <form class="form" action="/attendance/start-rest" method="post">
                 @csrf
                 <div class="main-contents-title">
                     <p>出勤中</p>
@@ -71,6 +71,8 @@
             </form>
             
             @elseif(isset($attendance) && !is_null($attendance->at_work) && !is_null($attendance->start_rest) && is_null($attendance->leaving_work) && is_null($attendance->finish_rest)) 
+            <form class="form" action="/attendance/finish-rest" method="post">
+                @csrf
                 <div class="main-contents-title">
                     <p>休憩中</p>
                 </div>
@@ -81,8 +83,11 @@
                     <p>{{ $time }}</p>
                 </div>
                 <button type="submit" class="button-white">休憩戻</button>
+            </form>
 
             @elseif(isset($attendance) && !is_null($attendance->at_work) && is_null($attendance->leaving_work) && !is_null($attendance->start_rest) && !is_null($attendance->finish_rest))
+            <form class="form" action="/attendance/leaving-work" method="post">
+                @csrf    
                 <div class="main-contents-title">
                     <p>出勤中</p>
                 </div>
@@ -109,7 +114,6 @@
                     <p>お疲れ様でした。</p>
                 </div>
             @endif
-            <!-- </form> -->
         </div>    
     </div>
 </body>
