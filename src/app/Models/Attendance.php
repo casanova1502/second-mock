@@ -15,14 +15,16 @@ class Attendance extends Model
         'at_work',
         'leaving_work',
         'total',
-        'start_rest',
-        'finish_rest',
-        'rest',
         'detail'
     ];
 
     public function user()
     {
        return $this->belongsTo(User::class);
+    }
+
+    public function rests()
+    {
+        return $this->hasMany(Rest::class);
     }
 }

@@ -24,22 +24,7 @@
             </form>
         </div>
         <div class="main-contents">
-            @if(is_null($attendance))
-            <form class="form" action="/attendance/at-work" method="post">
-                @csrf
-                <div class="main-contents-title">
-                    <p>勤務外</p>
-                </div>
-                <div class="main-contents-date">
-                    <p>{{ $date }}</p>
-                </div>
-                <div class="main-contents-time">
-                    <p>{{ $time }}</p>
-                </div>
-                <button type="submit" class="button-black">出勤</button>
-            </form>
-        
-            @elseif($attendance && is_null($attendance->at_work))
+            {{-- @if(is_null($attendance)) --}}
             <form class="form" action="/attendance/at-work" method="post">
                 @csrf
                 <div class="main-contents-title">
@@ -54,7 +39,7 @@
                 <button type="submit" class="button-black">出勤</button>
             </form>
             
-            @elseif(isset($attendance) && !is_null($attendance->at_work) && is_null($attendance->leaving_work) && is_null($attendance->start_rest))
+            {{-- @elseif(isset($attendance) && !is_null($attendance->at_work) && is_null($attendance->leaving_work)) --}}
             <div class="main-contents-title">
                 <p>出勤中</p>
             </div>
@@ -73,7 +58,7 @@
                 <button type="submit" class="button-white">休憩入</button>
             </form>
             
-            @elseif(isset($attendance) && !is_null($attendance->at_work) && !is_null($attendance->start_rest) && is_null($attendance->leaving_work) && is_null($attendance->finish_rest)) 
+            {{-- @elseif(isset($attendance, $rest) && !is_null($attendance->at_work) && !is_null($rest->start_rest) && is_null($attendance->leaving_work) && is_null($rest->finish_rest))  --}}
             <form class="form" action="/attendance/finish-rest" method="post">
                 @csrf
                 <div class="main-contents-title">
@@ -88,26 +73,7 @@
                 <button type="submit" class="button-white">休憩戻</button>
             </form>
 
-            @elseif(isset($attendance) && !is_null($attendance->at_work) && is_null($attendance->leaving_work) && !is_null($attendance->start_rest) && !is_null($attendance->finish_rest))
-            <div class="main-contents-title">
-                <p>出勤中</p>
-            </div>
-            <div class="main-contents-date">
-                <p>{{ $date }}</p>
-            </div>
-            <div class="main-contents-time">
-                <p>{{ $time }}</p>
-            </div>
-            <form class="form" action="/attendance/leaving-work" method="post">
-                @csrf    
-                <button type="submit" class="button-black">退勤</button>
-            </form>
-            <form class="form" action="/attendance/start-rest" method="post">
-                @csrf
-                <button type="submit" class="button-white">休憩入</button>
-            </form>
-
-            @else(isset($attendance) && !is_null($attendance->at_work, $attendance->leaving_work))
+            {{--@else(isset($attendance, $rest) && !is_null($attendance->at_work, $attendance->leaving_work))--}}
                 <div class="main-contents-title">
                     <p>退勤済み</p>
                 </div>
@@ -120,7 +86,7 @@
                 <div class="main-contents-message">
                     <p>お疲れ様でした。</p>
                 </div>
-            @endif
+            {{-- @endif --}}
         </div>    
     </div>
 </body>

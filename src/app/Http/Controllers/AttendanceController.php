@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Attendance;
+use App\Models\Rest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
@@ -25,50 +26,73 @@ class AttendanceController extends Controller
         //     'finish_rest' => null
         // ];
 
-        return view('attendance', compact('user','date','time','attendance'));
+        return view('attendance', compact('user','attendance','date','time',));
     }
 
     public function atworkAttendance(Request $request){        
+        $user = Auth::user();
+        $attendance = Attendance::where('user_id', Auth::id())->latest()->first();
+
+        Carbon::setLocale('ja');
+        $date = Carbon::now()->isoFormat('YYYY年M月D日(ddd)');
+        $time = Carbon::now()->isoFormat('H:m');
+        
         $attendance = new Attendance();
         $attendance->user_id = Auth::id();
         $attendance->date = today();
         $attendance->at_work = now();
         $attendance->save();
         
-        return redirect('attendance');
+        return view('attendance', compact('user','attendance','date','time',));
     }
 
-    public function startrestAttendance(Request $request){        
-        $attendance = Attendance::where('user_id', Auth::id())->where('date', today())->first();
-        
+    public function startRest(Request $request){        
+        $user = Auth::user();
+        $attendance = Attendance::where('user_id', Auth::id())->latest()->first();
+
+        Carbon::setLocale('ja');
+        $date = Carbon::now()->isoFormat('YYYY年M月D日(ddd)');
+        $time = Carbon::now()->isoFormat('H:m');
+
         if ($attendance) {
-            $attendance->start_rest = now();
-            $attendance->save();
+            $rest = new Rest();
+            $rest->attendance_id = $attendance->id;
+            $rest->start_rest = now();
+            $rest->save();
         }
 
-        return redirect('attendance');
+        return view('attendance', compact('user','attendance','date','time', 'rest'));
     }
 
-    public function finishrestAttendance(Request $request){        
-        $attendance = Attendance::where('user_id', Auth::id())->where('date', today())->first();
-        
-        if ($attendance) {
-            $attendance->finish_rest = now();
+    public function finishRest(Request $request){        
+        $user = Auth::user();
+        $attendance = Attendance::where('user_id', Auth::id())->latest()->first();
 
-            $start = Carbon::parse($attendance->start_rest);
-            $finish = Carbon::parse($attendance->finish_rest);
+        Carbon::setLocale('ja');
+        $date = Carbon::now()->isoFormat('YYYY年M月D日(ddd)');
+        $time = Carbon::now()->isoFormat('H:m');
+        $rest = Rest::where('attendance_id', $attendance->id)->latest()->first();
+        
+        // if ($rest) {
+            $rest->finish_rest = now();
+
+            $start = Carbon::parse($rest->start_rest);
+            $finish = Carbon::parse($rest->finish_rest);
             $breakMinutes = $start->diffInMinutes($finish);
-
-            $attendance->rest = $breakMinutes;
-
-            $attendance->save();
-        }
+            $rest->rest = $breakMinutes;
+            $rest->save();
+        // }
         
-        return redirect('attendance');
+        return view('attendance', compact('user','attendance','date','time', 'rest'));
     }
 
     public function leavingworkAttendance(Request $request){        
-        $attendance = Attendance::where('user_id', Auth::id())->where('date', today())->first();
+        $user = Auth::user();
+        $attendance = Attendance::where('user_id', Auth::id())->latest()->first();
+
+        Carbon::setLocale('ja');
+        $date = Carbon::now()->isoFormat('YYYY年M月D日(ddd)');
+        $time = Carbon::now()->isoFormat('H:m');
         
         if ($attendance) {
             $attendance->leaving_work = now();
@@ -82,7 +106,7 @@ class AttendanceController extends Controller
             $attendance->save();
         }
         
-        return redirect('attendance');
+        return view('attendance', compact('user','attendance','date','time',));
     }
 
     public function index(){
