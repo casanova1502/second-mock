@@ -30,8 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/attendance/start-rest', [AttendanceController::class, 'startRest']);
     Route::post('/attendance/finish-rest', [AttendanceController::class, 'finishRest']);
     Route::post('/attendance/leaving-work', [AttendanceController::class, 'leavingworkAttendance']);
+    Route::get('/attendance/list', [AttendanceController::class, 'index']);
 });
-Route::get('/attendance/list', [AttendanceController::class, 'index']);
 Route::get('/attendance/id', [AttendanceApplyController::class, 'storeView']);
 Route::get('/stamp_correction_request/list', [AttendanceApplyController::class, 'apply']);
 Route::get('/admin/login', [AdminController::class, 'login']);

@@ -20,8 +20,6 @@
             <a href="">ログアウト</a>
         </div>
         <div class="main-contents">
-            <!-- <form class="form" action="/login" method="post"> -->
-                <!-- @csrf -->
             <h1>勤怠一覧</h1>
             <div class="main-contents-title">
                 <a href="">←前月</a>
@@ -31,25 +29,27 @@
             <div>
                 <table>
                     <tr>
-                        <td>日付</td>
-                        <td>出勤</td>
-                        <td>退勤</td>
-                        <td>休憩</td>
-                        <td>合計</td>
-                        <td>
-                            <a href="">詳細</a>
-                        </td>
+                        <th>日付</th>
+                        <th>出勤</th>
+                        <th>退勤</th>
+                        <th>休憩</th>
+                        <th>合計</th>
+                        <th>詳細</th>
                     </tr>
+                    @foreach($attendances as $attendance)
+                    @foreach($rests as $rest)
                     <tr>
-                        <td>日付</td>
-                        <td>出勤</td>
-                        <td>退勤</td>
-                        <td>休憩</td>
-                        <td>合計</td>
+                        <td>{{ $attendance->formatted_date }}</td>
+                        <td>{{ $attendance->formatted_at_work }}</td>
+                        <td>{{ $attendance->formatted_leaving_work }}</td>
+                        <td>{{ $rest->formatted_rest }}</td>
+                        <td>{{ $attendance->formatted_total }}</td>
                         <td>
                             <a href="">詳細</a>
                         </td>
                     </tr>
+                    @endforeach
+                    @endforeach
                 </table>
             </div>
             <!-- </form> -->

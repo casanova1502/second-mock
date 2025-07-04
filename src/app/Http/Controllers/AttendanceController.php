@@ -110,6 +110,46 @@ class AttendanceController extends Controller
     }
 
     public function index(){
-        return view('attendance_list');
+        $user = Auth::user();
+        $attendances = Attendance::all();
+        $rests = Rest::all();
+
+        Carbon::setLocale('ja');
+        setlocale(LC_TIME, 'ja_JP.UTF-8');
+        foreach ($attendances as $attendance) {
+            if ($attendance->date) {
+            $attendance->formatted_date = Carbon::parse($attendance->date)->isoFormat('MM/DD（dd）');
+            } else {
+            $attendance->formatted_date = null;
+            }
+
+            if ($attendance->at_work) {
+            $attendance->formatted_at_work = Carbon::parse($attendance->at_work)->isoFormat('HH:mm');
+            } else {
+            $attendance->formatted_at_work = null;
+            }
+
+            if ($attendance->leaving_work) {
+            $attendance->formatted_leaving_work = Carbon::parse($attendance->leaving_work)->isoFormat('HH:mm');
+            } else {
+            $attendance->formatted_leaving_work = null;
+            }
+
+            if ($attendance->total) {
+            $attendance->formatted_total = sprintf('%d:%02d', floor($attendance->total / 60), $attendance->total % 60);
+            } else {
+            $attendance->formatted_total = null;
+            }
+        }
+
+        foreach ($rests as $rest) {
+            if ($rest->rest) {
+            $rest->formatted_rest = sprintf('%d:%02d', floor($rest->rest / 60), $rest->rest % 60);
+            } else {
+            $rest->formatted_rest = null;
+            }
+        }
+
+        return view('attendance_list', compact('user', 'attendances','rests'));
     }
 }
