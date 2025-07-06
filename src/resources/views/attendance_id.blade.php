@@ -20,8 +20,6 @@
             <a href="">ログアウト</a>
         </div>
         <div class="main-contents">
-            <!-- <form class="form" action="/login" method="post"> -->
-                <!-- @csrf -->
             <h1>勤怠詳細</h1>
             <div class="main-contents-title">
             </div>
@@ -29,7 +27,7 @@
                 <table>
                     <tr>
                         <td>名前</td>
-                        <td>西 伶奈</td>
+                        <td>{{ $user->name }}</td>
                     </tr>
                     <tr>
                         <td>日付</td>
@@ -40,11 +38,11 @@
                     <tr>
                         <td>出勤・退勤</td>
                         <td>
-                            <input type="text" placeholder="9:00">
+                            <input type="text" placeholder="{{ $attendance->at_work }}">
                         </td>
                         <td>～</td>
                         <td>
-                            <input type="text" placeholder="18:00">
+                            <input type="text" placeholder="{{ $attendance->leaving_work }}">
                         </td>
                     </tr>
                     <tr>

@@ -37,18 +37,16 @@
                         <th>詳細</th>
                     </tr>
                     @foreach($attendances as $attendance)
-                    @foreach($rests as $rest)
                     <tr>
                         <td>{{ $attendance->formatted_date }}</td>
                         <td>{{ $attendance->formatted_at_work }}</td>
                         <td>{{ $attendance->formatted_leaving_work }}</td>
-                        <td>{{ $rest->formatted_rest }}</td>
+                        <td>{{ $attendance->formatted_rest }}</td>
                         <td>{{ $attendance->formatted_total }}</td>
                         <td>
-                            <a href="">詳細</a>
+                            <a href="/attendance/{{ $attendance->id }}">詳細</a>
                         </td>
                     </tr>
-                    @endforeach
                     @endforeach
                 </table>
             </div>

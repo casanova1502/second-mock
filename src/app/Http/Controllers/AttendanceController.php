@@ -111,8 +111,10 @@ class AttendanceController extends Controller
 
     public function index(){
         $user = Auth::user();
-        $attendances = Attendance::all();
-        $rests = Rest::all();
+        // $attendances = Attendance::all();
+        $attendances = Attendance::with('rests')->where('user_id', Auth::id())->get();
+        $attendance = Attendance::with('rests')->where('user_id', Auth::id())->latest()->first();
+        $latestRest = $attendance->rests()->latest()->first();
 
         Carbon::setLocale('ja');
         setlocale(LC_TIME, 'ja_JP.UTF-8');
@@ -135,6 +137,20 @@ class AttendanceController extends Controller
             $attendance->formatted_leaving_work = null;
             }
 
+            $latestRest = $attendance->rests->sortByDesc('created_at')->first();
+            if ($latestRest && is_numeric($latestRest->rest)) {
+            $totalRest = $latestRest->rest;
+            $attendance->formatted_rest = sprintf('%d:%02d', floor($totalRest / 60), $totalRest % 60);
+            } else {
+            $attendance->formatted_rest = null;
+            }
+            // if ($latestRest) {
+            // $restMinutes = $latestRest->rest;
+            // $restTotal = sprintf('%d:%02d', floor($restMinutes / 60), $restMinutes % 60);
+            // } else {
+            // $restTotal = null;
+            // }
+
             if ($attendance->total) {
             $attendance->formatted_total = sprintf('%d:%02d', floor($attendance->total / 60), $attendance->total % 60);
             } else {
@@ -142,14 +158,6 @@ class AttendanceController extends Controller
             }
         }
 
-        foreach ($rests as $rest) {
-            if ($rest->rest) {
-            $rest->formatted_rest = sprintf('%d:%02d', floor($rest->rest / 60), $rest->rest % 60);
-            } else {
-            $rest->formatted_rest = null;
-            }
-        }
-
-        return view('attendance_list', compact('user', 'attendances','rests'));
+        return view('attendance_list', compact('user', 'attendances', 'attendance', 'latestRest'));
     }
 }
