@@ -21,6 +21,12 @@ class UsersTableSeeder extends Seeder
             'email' => 'ptkr.psyot2021@gmail.com',
             'password' => Hash::make('arsenic4423'),
             ],
+
+            [
+            'name' => '吉田穂花',
+            'email' => 'nyanmi@gmail.com',
+            'password' => Hash::make('honoka'),
+            ],
         ]);
     }
 }
